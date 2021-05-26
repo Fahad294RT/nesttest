@@ -10,7 +10,10 @@ export class User {
    name: string;
 
   @Column() 
-   password: string; 
+   password: string;
+
+  @Column() 
+   type: string;  //should be fixed enum e.g. admin/user etc
 
   @OneToMany(type => Photo, photo => photo.user) photos: Photo[]; 
 }
