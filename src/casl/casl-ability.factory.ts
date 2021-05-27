@@ -22,7 +22,7 @@ export class CaslAbilityFactory {
     if (user.type === "admin") {
       can(CrudAction.Manage, 'all'); // read-write access to everything
     } else {
-      can(CrudAction.Read, Photo, { isPublished: true }); // read-only access to everything
+      //can(CrudAction.Read, Photo, { user: user.id, isPublished: true }); // read-only access to everything
     }
 
     //can(CrudAction.Update, Photo, { user: user.id });

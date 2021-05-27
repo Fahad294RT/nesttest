@@ -1,0 +1,4 @@
+Many to many for photos and categories
+Multer / aws bucket
+Proper role and permission crud
+Password should be hashed properly
