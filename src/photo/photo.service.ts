@@ -13,14 +13,14 @@ export class PhotoService {
   //   return this.repository.find();
   // }
 
-  async read(): Promise<Resource[]> {
+  async read(page: number = 0): Promise<Resource[]> {
     return this.repository.find({
       order: {
         id: "DESC",
         name: "ASC"
       },
       take: 10,
-      skip: 0
+      skip: page * 10
     });
   }
 

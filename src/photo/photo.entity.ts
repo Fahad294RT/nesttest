@@ -1,8 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable} from 'typeorm';
 import { User } from "../user/user.entity"; 
 
+import { GeneralEntity } from '../generic/generic.entity';
+
 @Entity()
-export class Photo {
+export class Photo extends GeneralEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

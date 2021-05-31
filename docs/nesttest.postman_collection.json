@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Fahad1\",\n    \"description\": \"Some description\",\n    \"filename\": \"some file\",\n    \"views\": 0,\n    \"isPublished\": false,\n    \"user\": 2\n}",
+							"raw": "{\n    \"name\": \"Some photo\",\n    \"description\": \"Some description\",\n    \"filename\": \"some file\",\n    \"views\": 0,\n    \"isPublished\": false,\n    \"user\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,11 +23,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/photo",
+							"raw": "{{url}}/photo",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"photo"
 							],
@@ -49,21 +48,25 @@
 							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token_admin}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "localhost:3000/photo",
+							"raw": "{{url}}/photo?page=1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"photo"
 							],
 							"query": [
 								{
-									"key": "name",
-									"value": "Fahad",
-									"disabled": true
+									"key": "page",
+									"value": "1"
 								}
 							]
 						}
@@ -82,7 +85,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Fahad\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"name\": \"Fahad\",\n    \"password\": \"password\",\n    \"type\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,11 +93,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user",
+							"raw": "{{url}}/user",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"user"
 							],
@@ -115,11 +117,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/user",
+							"raw": "{{url}}/user",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"user"
 							],
@@ -154,11 +155,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/auth/login",
+							"raw": "{{url}}/auth/login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"auth",
 								"login"
@@ -189,16 +189,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjE5NDg5MjgsImV4cCI6MTYyMTk1MjUyOH0.hX9o_b-4yHI6zihJoqyFDNwyfzxC2w8lwE2BqZWruYQ",
+								"value": "Bearer {{token_admin}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/profile",
+							"raw": "{{url}}/profile",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"profile"
 							],
@@ -210,6 +209,30 @@
 								}
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file",
+			"item": [
+				{
+					"name": "uploadFile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": "{{url}}/file/upload"
 					},
 					"response": []
 				}
