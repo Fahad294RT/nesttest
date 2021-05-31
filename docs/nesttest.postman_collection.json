@@ -56,7 +56,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/photo",
+							"raw": "{{url}}/photo?page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -65,9 +65,8 @@
 							],
 							"query": [
 								{
-									"key": "name",
-									"value": "Fahad",
-									"disabled": true
+									"key": "page",
+									"value": "1"
 								}
 							]
 						}

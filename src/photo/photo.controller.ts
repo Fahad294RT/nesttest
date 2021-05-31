@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards, Request} from '@nestjs/common';
+import { Controller, Query, Post, Body, Get, Put, Delete, Param, UseGuards, Request} from '@nestjs/common';
 import { PhotoService as Service} from './photo.service';
 import { Photo } from './photo.entity';
 
@@ -22,7 +22,7 @@ export class PhotoController {
     @CheckPolicies((ability: AppAbility) => ability.can(CrudAction.Read, Photo))
 
     @Get()
-    get(@Param() params, @Request() req) {
+    get(@Query() query, @Request() req) {
       // const ability = this.caslAbilityFactory.createForUser(req.user);
       // if (ability.can(CrudAction.Read, 'all')) {
       //   console.log("user can read all")
@@ -31,7 +31,7 @@ export class PhotoController {
       // }
       // return req.user
 
-      return this.service.read();
+      return this.service.read((query.page || 1) - 1 );
     }
 
     @Get(':id')
