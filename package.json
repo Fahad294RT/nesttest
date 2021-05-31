@@ -18,7 +18,9 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "doc": "npx compodoc src -p tsconfig.doc.json -n \"Nesttest docs\" -s",
+    "docServe": "npx compodoc -s"
   },
   "dependencies": {
     "@casl/ability": "^5.3.1",
@@ -37,11 +39,13 @@
     "typeorm": "^0.2.32"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
     "@nestjs/cli": "^7.6.0",
     "@nestjs/schematics": "^7.3.0",
     "@nestjs/testing": "^7.6.15",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.22",
+    "@types/multer": "^1.4.5",
     "@types/node": "^14.14.36",
     "@types/passport-jwt": "^3.0.5",
     "@types/passport-local": "^1.0.33",
