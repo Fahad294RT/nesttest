@@ -19,8 +19,8 @@ export class UserController {
 
     @Post()
     create(@Body() resource: User) {
-      //return this.service.create();
-      return this.service.update(resource);
+      return this.service.create(resource);
+      //return this.service.update(resource);
     }
 
     @Put()

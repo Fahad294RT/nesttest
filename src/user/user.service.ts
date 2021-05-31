@@ -2,6 +2,8 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 
+import * as bcrypt from 'bcrypt';
+
 @Injectable()
 export class UserService {
   constructor(
@@ -37,13 +39,21 @@ export class UserService {
     });
   }
 
-  async create() {
-    const  resource = new User();
+  /*
+   * Create a new user
+  */
+  async create(res: User) {
+
+    //const resource = new User(); //entity must have default values
+
+    //validator
+    //VALIDATION HERE
+
+    //hasher
+    res.password= await bcrypt.hash(res.password, await bcrypt.genSalt());
 
     //https://stackoverflow.com/a/62130952 use this instead
-    // const resource = this.repository.create({
-    //  name: "Some name" <-- should be argument
-    // });
+    const resource = this.repository.create(res);
 
     return this.repository.save(resource)
   }
