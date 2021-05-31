@@ -15,7 +15,4 @@ export abstract class GeneralEntity extends BaseEntity {
   
   @CreateDateColumn()
     updated: Date;
-
-  // @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"))
-  //   created: string;
 }

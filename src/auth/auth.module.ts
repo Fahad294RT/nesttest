@@ -11,6 +11,7 @@ import { jwtConstants } from './constants';
 import { CaslModule } from '../casl/casl.module';
 
 import { PermGuard } from './perm.guard';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -26,5 +27,6 @@ import { PermGuard } from './perm.guard';
     // { provide: "APP_GUARD", useClass: PermGuard }
   ],
   exports: [AuthService],
+  controllers: [AuthController],
 })
 export class AuthModule {}

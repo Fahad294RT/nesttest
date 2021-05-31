@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Some photo\",\n    \"description\": \"Some description\",\n    \"filename\": \"some file\",\n    \"views\": 0,\n    \"isPublished\": false,\n    \"user\": 1\n}",
+							"raw": "{\n    \"name\": \"Some photo\",\n    \"description\": \"Some description\",\n    \"filename\": \"some file\",\n    \"views\": 0,\n    \"isPublished\": false,\n    \"user\": 4\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{token_admin}}",
+								"value": "Bearer {{user_access_token}}",
 								"type": "text"
 							}
 						],
@@ -85,7 +85,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Fahad\",\n    \"password\": \"password\",\n    \"type\": \"admin\"\n}",
+							"raw": "{\n    \"username\": \"Fahad\",\n    \"password\": \"password\",\n    \"type\": \"admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,6 +171,21 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "refresh_token",
+								"value": "{{user_refresh_token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{url}}/auth/refresh"
 					},
 					"response": []
 				}

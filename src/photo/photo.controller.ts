@@ -23,6 +23,7 @@ export class PhotoController {
 
     @Get()
     get(@Query() query, @Request() req) {
+
       // const ability = this.caslAbilityFactory.createForUser(req.user);
       // if (ability.can(CrudAction.Read, 'all')) {
       //   console.log("user can read all")
@@ -30,7 +31,7 @@ export class PhotoController {
       //   console.log("user cannot read all")
       // }
       // return req.user
-
+    
       return this.service.read((query.page || 1) - 1 );
     }
 

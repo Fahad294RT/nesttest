@@ -27,7 +27,7 @@ export class UserService {
 
   async show(_id: number): Promise<User> {
     return this.repository.findOne({
-      select: ["name"],
+      select: ["username"],
       where: [{ "id": _id }]
     });
   }
@@ -35,7 +35,7 @@ export class UserService {
   async fetchByName(name: string): Promise<User> {
     return this.repository.findOne({
       //select: ["name"],
-      where: [{ "name": name }]
+      where: [{ "username": name }]
     });
   }
 
