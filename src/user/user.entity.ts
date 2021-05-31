@@ -1,8 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
 import { Photo } from "../photo/photo.entity"; 
 
+import { GeneralEntity } from '../generic/generic.entity';
+
 @Entity()
-export class User {
+export class User extends GeneralEntity {
   @PrimaryGeneratedColumn() 
    id: number; 
    
