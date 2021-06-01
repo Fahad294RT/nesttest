@@ -51,7 +51,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{user_access_token}}",
+								"value": "Bearer {{admin_access_token}}",
 								"type": "text"
 							}
 						],
@@ -76,6 +76,249 @@
 			]
 		},
 		{
+			"name": "company",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Some company\",\n    \"description\": \"Some description\",\n    \"owner\": 4,\n    \"type\": \"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/company",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fahad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company?page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "role",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Some role\",\n    \"description\": \"Some description\",\n    \"company\": 1,\n    \"permissions\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/role",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"role"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fahad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/role?page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"role"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "permission",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Some permission\",\n    \"description\": \"Some description\",\n    \"type\": \"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/permission",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"permission"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fahad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{admin_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/permission?page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"permission"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "user",
 			"item": [
 				{
@@ -85,7 +328,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"Fahad\",\n    \"password\": \"password\",\n    \"type\": \"admin\"\n}",
+							"raw": "{\n    \"username\": \"Fahad1\",\n    \"password\": \"password\",\n    \"type\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -147,7 +390,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"Fahad\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"username\": \"Fahad1\",\n    \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -9,10 +9,12 @@ import { UserModule } from './user/user.module';
 import { CaslModule } from './casl/casl.module';
 import { FileModule } from './file/file.module';
 import { CompanyModule } from './company/company.module';
+import { RoleModule } from './role/role.module';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
-    UserModule, PhotoModule, AuthModule, CaslModule, FileModule, CompanyModule
+    UserModule, PhotoModule, AuthModule, CaslModule, FileModule, CompanyModule, RoleModule, PermissionModule
   ],
   controllers: [AppController],
   providers: [AppService],
