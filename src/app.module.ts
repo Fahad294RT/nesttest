@@ -8,10 +8,11 @@ import { PhotoModule } from './photo/photo.module';
 import { UserModule } from './user/user.module';
 import { CaslModule } from './casl/casl.module';
 import { FileModule } from './file/file.module';
+import { CompanyModule } from './company/company.module';
 
 @Module({
   imports: [
-    UserModule, PhotoModule, AuthModule, CaslModule, FileModule
+    UserModule, PhotoModule, AuthModule, CaslModule, FileModule, CompanyModule
   ],
   controllers: [AppController],
   providers: [AppService],

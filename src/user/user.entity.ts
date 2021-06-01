@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
-import { Photo } from "../photo/photo.entity"; 
-
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm'; 
 import { GeneralEntity } from '../generic/generic.entity';
+
+import { Photo } from "../photo/photo.entity";
+import { Company } from "../company/company.entity";
 
 @Entity()
 export class User extends GeneralEntity {
@@ -11,13 +12,15 @@ export class User extends GeneralEntity {
   @Column() 
    username: string;
 
-  @Column() 
+  @Column({ select: false }) 
    password: string;
 
   @Column() 
    type: string;  //should be fixed enum e.g. admin/user etc
 
-  @OneToMany(type => Photo, photo => photo.user) photos: Photo[]; 
+  @OneToMany(type => Photo, photo => photo.user) photos: Photo[];
+
+  @OneToMany(type => Company, company => company.owner) companies: Company[]; 
 
   /**
    * To forcefully expire all JWT token upto specific date.
