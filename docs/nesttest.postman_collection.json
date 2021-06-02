@@ -166,7 +166,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Some role\",\n    \"description\": \"Some description\",\n    \"company\": 1,\n    \"permissions\": [1]\n}",
+							"raw": "{\n    \"name\": \"Some role\",\n    \"description\": \"Some description\",\n    \"company\": 1,\n    \"permissions\": [{\"id\":1}]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
