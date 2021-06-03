@@ -6,6 +6,7 @@ import { User } from '../user/user.entity';
 
 import { FilePolyRepository } from './file.repository';
 import { Connection, Repository } from 'typeorm';
+import { Utility } from '../generic/utility.helper';
 
 @Injectable()
 export class FileService {
@@ -44,7 +45,8 @@ export class FileService {
     var response= []
 
     //this will be handled by the factory later
-    var myResource= new User();
+    const MyClass= Utility.getClass(body.resource)
+    var myResource= new MyClass();
     myResource.id= body.resource_id
 
     files.forEach(async (file) => {
