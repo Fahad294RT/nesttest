@@ -476,7 +476,30 @@
 			"name": "file",
 			"item": [
 				{
-					"name": "uploadFile",
+					"name": "read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/file?page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"file"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -487,10 +510,25 @@
 									"key": "files",
 									"type": "file",
 									"src": []
+								},
+								{
+									"key": "resource",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "resource_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "resource_key",
+									"value": "logo",
+									"type": "text"
 								}
 							]
 						},
-						"url": "{{url}}/file/upload"
+						"url": "{{url}}/file/create"
 					},
 					"response": []
 				}
