@@ -1,4 +1,7 @@
-import { Controller, Post, UseInterceptors, Request} from '@nestjs/common';
+import { Controller, Query, Post, Body, Get, Put, Delete, Param, UseInterceptors, UseGuards, Request} from '@nestjs/common';
+
+import { FileService } from './file.service';
+import { File } from './file.entity';
 
 import { Express } from 'express'
 import { FilesInterceptor } from '@nestjs/platform-express'
@@ -8,41 +11,41 @@ import { diskStorage } from 'multer';
 @Controller('file')
 export class FileController {
 
-	/**
-	 * @param {string} file Multiple files (bulk upload only for very small files)
-	 * @returns Returns hash of the files in registery
-	 */
-	@Post('upload')
-	@UseInterceptors(
-		FilesInterceptor('files', 20, {
-		  storage: diskStorage({
-		    destination: './uploads/',
-		    //filename: "someFilename.txt",
-		  }),
-			//fileFilter: imageFileFilter,
-		}),
-	)
-	uploadFiles(@UploadedFiles() files: Express.Multer.File[]) {
-	  const response = [];
-    files.forEach(file => {
-      const fileReponse = {
-        filename: file.filename,
-      };
-      response.push(fileReponse);
-    });
+    constructor(private service: FileService) { }
 
-    /*
-    	forward to storage
-				https://stackoverflow.com/a/52261427
-				make proper service and function
-					donot perform cleanup
-				middleware to check which resource can have files
-    */
-    // add item to global registery
-    // update resource reference
+    @Get()
+    get(@Query() query) {
+      return this.service.read((query.page || 1) - 1 );
+    }
 
-    return response;
-	}
+    @Get(':id')
+    show(@Param() params) {
+      return this.service.show(params.id);
+    }
 
-	//donwload stream link here, auth based
+    /**
+     * @param {string} file Multiple files (bulk upload only for very small files)
+     * @returns Returns hash of the files in registery
+     */
+    @Post('create')
+    @UseInterceptors(
+      FilesInterceptor('files', 20, {
+        storage: diskStorage({
+          destination: './uploads/'
+        })
+      }),
+    )
+    create(@Body() body: any, @UploadedFiles() files: Express.Multer.File[]) {
+      return this.service.create(body, files);
+    }
+
+    @Put()
+    update(@Body() body: any, @UploadedFiles() files: Express.Multer.File[]) {
+      return this.service.update(body, files);
+    }
+
+    @Delete(':id')
+    delete(@Param() params) {
+      return this.service.delete(params.id);
+    }
 }

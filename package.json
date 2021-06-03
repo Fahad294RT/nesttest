@@ -29,6 +29,7 @@
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/typeorm": "^7.1.5",
     "bcrypt": "^5.0.1",
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
@@ -37,7 +38,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.32",
+    "typeorm-polymorphic": "0.0.10"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.11",
