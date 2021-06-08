@@ -25,4 +25,20 @@ export class Photo extends GeneralEntity {
 
   @ManyToOne(type => User, user => user.photos, {eager: true})
   @JoinTable() user: User[];
+
+
+  constructor(obj:any) {
+    super();
+
+    if(!obj) {
+      return
+    }
+    
+    this.name = obj.name || '';
+    this.description = obj.description || '';
+    this.filename = obj.filename || '';
+    this.views = obj.views || 0;
+    this.isPublished = obj.isPublished || false;
+    this.user = obj.user || null
+  }
 }
