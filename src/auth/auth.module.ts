@@ -7,7 +7,6 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 
-
 import { CaslModule } from '../casl/casl.module';
 
 import { PermGuard } from './perm.guard';
@@ -23,7 +22,10 @@ import { AuthController } from './auth.controller';
       signOptions: { expiresIn: '3600s' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy,
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
     // { provide: "APP_GUARD", useClass: PermGuard }
   ],
   exports: [AuthService],

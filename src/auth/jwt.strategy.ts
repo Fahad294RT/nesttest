@@ -14,14 +14,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-
-    if(payload.token_type !== "access") {
-      throw new HttpException({
-        status: HttpStatus.FORBIDDEN,
-        error: 'Not a valid access token.',
-      }, HttpStatus.FORBIDDEN);
+    if (payload.token_type !== 'access') {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'Not a valid access token.',
+        },
+        HttpStatus.FORBIDDEN,
+      );
     }
 
-    return { username: payload.username, id: payload.id, type: payload.type }
+    return { username: payload.username, id: payload.id, type: payload.type };
   }
 }

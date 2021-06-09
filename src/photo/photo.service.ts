@@ -12,32 +12,32 @@ export class PhotoService {
   //   return this.repository.find();
   // }
 
-  async read(page: number = 0): Promise<Photo[]> {
+  async read(page = 0): Promise<Photo[]> {
     return this.repository.find({
       order: {
-        id: "DESC",
-        name: "ASC"
+        id: 'DESC',
+        name: 'ASC',
       },
       take: 10,
-      skip: page * 10
+      skip: page * 10,
     });
   }
 
   async show(_id: number): Promise<Photo[]> {
     return this.repository.find({
-      select: ["name", "description"],
-      where: [{ "id": _id }]
+      select: ['name', 'description'],
+      where: [{ id: _id }],
     });
   }
 
   async create(resource: Photo) {
     //const  resource = new Resource();
     const res = this.repository.create(resource);
-    return this.repository.save(res)
+    return this.repository.save(res);
   }
 
   async update(resource: Photo) {
-    return this.repository.save(resource)
+    return this.repository.save(resource);
   }
 
   async delete(resource: Photo) {

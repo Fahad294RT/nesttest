@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Express } from 'express'
+import { Express } from 'express';
 
 import { File } from './file.entity';
 import { User } from '../user/user.entity';
@@ -11,47 +11,45 @@ import { Utility } from '../generic/utility.helper';
 @Injectable()
 export class FileService {
   constructor(
-    @Inject('FILE_REPOSITORY')
-    //private repository: Repository<File>,
-    private repository: FilePolyRepository
+    @Inject('FILE_REPOSITORY') private repository: FilePolyRepository, //private repository: Repository<File>,
   ) {}
 
   // async findAll(): Promise<File[]> {
   //   return this.repository.find();
   // }
 
-  async read(page: number = 0): Promise<File[]> {
+  async read(page = 0): Promise<File[]> {
     //manual repo marker
     return this.repository.find({
       order: {
-        id: "DESC"
+        id: 'DESC',
       },
       take: 10,
-      skip: page * 10
+      skip: page * 10,
     });
   }
 
   async show(_id: number): Promise<File[]> {
     //manual repo marker
     return this.repository.find({
-      select: ["originalname", "mimetype", "filename"],
-      where: [{ "id": _id }]
+      select: ['originalname', 'mimetype', 'filename'],
+      where: [{ id: _id }],
     });
   }
 
   async create(body: any, files: Express.Multer.File[]) {
     //manual repo marker
-    
-    var response= []
+
+    const response = [];
 
     //this will be handled by the factory later
-    const MyClass= Utility.getClass(body.resource)
-    var myResource= new MyClass();
-    myResource.id= body.resource_id
+    const MyClass = Utility.getClass(body.resource);
+    const myResource = new MyClass();
+    myResource.id = body.resource_id;
 
     files.forEach(async (file) => {
       //const resource = new File();
-      var resource = this.repository.create({
+      const resource = this.repository.create({
         resource_key: body.resource_key,
         originalname: file.originalname,
         encoding: file.encoding,
@@ -60,7 +58,7 @@ export class FileService {
         size: file.size,
       });
 
-      resource.resource= myResource
+      resource.resource = myResource;
 
       // TODO: store to bucket (https://stackoverflow.com/a/52261427)
       // TODO: cleanup on hard
@@ -68,12 +66,12 @@ export class FileService {
       response.push(await this.repository.save(resource));
     });
 
-    return response
+    return response;
   }
 
   async update(body: any, files: Express.Multer.File[]) {
     //manual repo marker
-    return null
+    return null;
     //return this.repository.save(resource)
   }
 

@@ -5,7 +5,8 @@ import { FilePolyRepository } from './file.repository';
 export const fileProviders = [
   {
     provide: 'FILE_REPOSITORY',
-    useFactory: (connection: Connection) => connection.getCustomRepository(FilePolyRepository),
+    useFactory: (connection: Connection) =>
+      connection.getCustomRepository(FilePolyRepository),
     inject: ['DATABASE_CONNECTION'],
   },
 ];

@@ -14,7 +14,14 @@ import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
-    UserModule, PhotoModule, AuthModule, CaslModule, FileModule, CompanyModule, RoleModule, PermissionModule
+    UserModule,
+    PhotoModule,
+    AuthModule,
+    CaslModule,
+    FileModule,
+    CompanyModule,
+    RoleModule,
+    PermissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

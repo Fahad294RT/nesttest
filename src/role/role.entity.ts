@@ -1,8 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable} from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { GeneralEntity } from '../generic/generic.entity';
 
-import { Company } from "../company/company.entity"; 
-import { Permission } from "../permission/permission.entity"; 
+import { Company } from '../company/company.entity';
+import { Permission } from '../permission/permission.entity';
 
 @Entity()
 export class Role extends GeneralEntity {
@@ -15,9 +22,13 @@ export class Role extends GeneralEntity {
   @Column('text')
   description: string;
 
-  @ManyToOne(type => Company, company => company.roles, {eager: true})
-  @JoinTable() company: Company[];
+  @ManyToOne((type) => Company, (company) => company.roles, { eager: true })
+  @JoinTable()
+  company: Company[];
 
-  @ManyToMany(type => Permission, permission => permission.roles, {eager: true})
-  @JoinTable() permissions: Permission[];
+  @ManyToMany((type) => Permission, (permission) => permission.roles, {
+    eager: true,
+  })
+  @JoinTable()
+  permissions: Permission[];
 }

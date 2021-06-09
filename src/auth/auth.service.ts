@@ -9,7 +9,7 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   /**
@@ -32,9 +32,14 @@ export class AuthService {
    * @returns Returns refresh_token
    */
   async login(user: any) {
-    const payload = { token_type: "refresh", username: user.username, id: user.id, type: user.type};
+    const payload = {
+      token_type: 'refresh',
+      username: user.username,
+      id: user.id,
+      type: user.type,
+    };
     return this.jwtService.sign(payload, {
-        expiresIn: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7) //1 week
+      expiresIn: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, //1 week
     });
   }
 
@@ -43,12 +48,17 @@ export class AuthService {
    * @returns Returns the access_token
    */
   async refresh(refresh_token: string) {
-    const token_data:any= this.jwtService.decode(refresh_token)
-    console.log ("token_data: ", JSON.stringify(token_data))
-    const payload = { token_type: "access", username: token_data.username, id: token_data.id, type: token_data.type};
+    const token_data: any = this.jwtService.decode(refresh_token);
+    console.log('token_data: ', JSON.stringify(token_data));
+    const payload = {
+      token_type: 'access',
+      username: token_data.username,
+      id: token_data.id,
+      type: token_data.type,
+    };
 
     return this.jwtService.sign(payload, {
-      expiresIn: Math.floor(Date.now() / 1000) + (60 * 60 * 24) //1 day
-    })
+      expiresIn: Math.floor(Date.now() / 1000) + 60 * 60 * 24, //1 day
+    });
   }
 }

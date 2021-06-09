@@ -8,10 +8,7 @@ import { CaslModule } from '../casl/casl.module';
 
 @Module({
   imports: [DatabaseModule, CaslModule],
-  providers: [
-    ...photoProviders,
-    PhotoService
-  ],
-  controllers: [PhotoController]
+  providers: [...photoProviders, PhotoService],
+  controllers: [PhotoController],
 })
 export class PhotoModule {}

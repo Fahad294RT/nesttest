@@ -1,5 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable} from 'typeorm';
-import { User } from "../user/user.entity"; 
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinTable,
+} from 'typeorm';
+import { User } from '../user/user.entity';
 
 import { GeneralEntity } from '../generic/generic.entity';
 
@@ -23,22 +29,22 @@ export class Photo extends GeneralEntity {
   @Column()
   isPublished: boolean;
 
-  @ManyToOne(type => User, user => user.photos, {eager: true})
-  @JoinTable() user: User[];
+  @ManyToOne((type) => User, (user) => user.photos, { eager: true })
+  @JoinTable()
+  user: User[];
 
-
-  constructor(obj:any) {
+  constructor(obj: any) {
     super();
 
-    if(!obj) {
-      return
+    if (!obj) {
+      return;
     }
-    
+
     this.name = obj.name || '';
     this.description = obj.description || '';
     this.filename = obj.filename || '';
     this.views = obj.views || 0;
     this.isPublished = obj.isPublished || false;
-    this.user = obj.user || null
+    this.user = obj.user || null;
   }
 }

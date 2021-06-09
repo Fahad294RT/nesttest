@@ -1,28 +1,29 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm'; 
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { GeneralEntity } from '../generic/generic.entity';
 import { PolymorphicChildren } from 'typeorm-polymorphic';
 
-import { Photo } from "../photo/photo.entity";
-import { Company } from "../company/company.entity";
-import { File } from "../file/file.entity";
+import { Photo } from '../photo/photo.entity';
+import { Company } from '../company/company.entity';
+import { File } from '../file/file.entity';
 
 @Entity()
 export class User extends GeneralEntity {
-  @PrimaryGeneratedColumn() 
-   id: number; 
-   
-  @Column() 
-   username: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column({ select: false }) 
-   password: string;
+  @Column()
+  username: string;
 
-  @Column() 
-   type: string;  //should be fixed enum e.g. admin/user etc
+  @Column({ select: false })
+  password: string;
 
-  @OneToMany(type => Photo, photo => photo.user) photos: Photo[];
+  @Column()
+  type: string; //should be fixed enum e.g. admin/user etc
 
-  @OneToMany(type => Company, company => company.owner) companies: Company[]; 
+  @OneToMany((type) => Photo, (photo) => photo.user) photos: Photo[];
+
+  @OneToMany((type) => Company, (company) => company.owner)
+  companies: Company[];
 
   @PolymorphicChildren(() => File, { eager: true })
   files: File[];

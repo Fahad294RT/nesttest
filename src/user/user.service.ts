@@ -18,48 +18,47 @@ export class UserService {
   async read(): Promise<User[]> {
     return this.repository.find({
       order: {
-        id: "DESC"
+        id: 'DESC',
       },
       take: 10,
-      skip: 0
+      skip: 0,
     });
   }
 
   async show(_id: number): Promise<User> {
     return this.repository.findOne({
-      select: ["username"],
-      where: [{ "id": _id }]
+      select: ['username'],
+      where: [{ id: _id }],
     });
   }
 
   async fetchByName(name: string): Promise<User> {
     return this.repository.findOne({
       //select: ["name"],
-      where: [{ "username": name }]
+      where: [{ username: name }],
     });
   }
 
   /*
    * Create a new user
-  */
+   */
   async create(res: User) {
-
     //const resource = new User(); //entity must have default values
 
     //validator
     //VALIDATION HERE
 
     //hasher
-    res.password= await bcrypt.hash(res.password, await bcrypt.genSalt());
+    res.password = await bcrypt.hash(res.password, await bcrypt.genSalt());
 
     //https://stackoverflow.com/a/62130952 use this instead
     const resource = this.repository.create(res);
 
-    return this.repository.save(resource)
+    return this.repository.save(resource);
   }
 
   async update(resource: User) {
-    return this.repository.save(resource)
+    return this.repository.save(resource);
   }
 
   async delete(resource: User) {

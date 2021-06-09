@@ -1,5 +1,16 @@
-import { Controller, Query, Post, Body, Get, Put, Delete, Param, UseGuards, Request} from '@nestjs/common';
-import { PhotoService as Service} from './photo.service';
+import {
+  Controller,
+  Query,
+  Post,
+  Body,
+  Get,
+  Put,
+  Delete,
+  Param,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
+import { PhotoService as Service } from './photo.service';
 import { Photo } from './photo.entity';
 
 //import {User} from '../user/user.entity'
@@ -15,44 +26,44 @@ import { CaslAbilityFactory } from '../casl/casl-ability.factory';
 
 @Controller('photo')
 export class PhotoController {
+  constructor(
+    private service: Service,
+    private caslAbilityFactory: CaslAbilityFactory,
+  ) {}
 
-    constructor(private service: Service, private caslAbilityFactory: CaslAbilityFactory) { }
+  @UseGuards(JwtAuthGuard, PermGuard)
+  @CheckPolicies((ability: AppAbility) => ability.can(CrudAction.Read, Photo))
+  @Get()
+  get(@Query() query, @Request() req) {
+    // const ability = this.caslAbilityFactory.createForUser(req.user);
+    // if (ability.can(CrudAction.Read, 'all')) {
+    //   console.log("user can read all")
+    // } else {
+    //   console.log("user cannot read all")
+    // }
+    // return req.user
 
-    @UseGuards(JwtAuthGuard, PermGuard)
-    @CheckPolicies((ability: AppAbility) => ability.can(CrudAction.Read, Photo))
+    return this.service.read((query.page || 1) - 1);
+  }
 
-    @Get()
-    get(@Query() query, @Request() req) {
+  @Get(':id')
+  show(@Param() params) {
+    return this.service.show(params.id);
+  }
 
-      // const ability = this.caslAbilityFactory.createForUser(req.user);
-      // if (ability.can(CrudAction.Read, 'all')) {
-      //   console.log("user can read all")
-      // } else {
-      //   console.log("user cannot read all")
-      // }
-      // return req.user
-    
-      return this.service.read((query.page || 1) - 1 );
-    }
+  @Post()
+  create(@Body() resource: Photo) {
+    //return this.service.create();
+    return this.service.update(resource);
+  }
 
-    @Get(':id')
-    show(@Param() params) {
-      return this.service.show(params.id);
-    }
+  @Put()
+  update(@Body() resource: Photo) {
+    return this.service.update(resource);
+  }
 
-    @Post()
-    create(@Body() resource: Photo) {
-      //return this.service.create();
-      return this.service.update(resource);
-    }
-
-    @Put()
-    update(@Body() resource: Photo) {
-      return this.service.update(resource);
-    }
-
-    @Delete(':id')
-    delete(@Param() params) {
-      return this.service.delete(params.id);
-    }
+  @Delete(':id')
+  delete(@Param() params) {
+    return this.service.delete(params.id);
+  }
 }

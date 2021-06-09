@@ -9,31 +9,31 @@ export class RoleService {
     private repository: Repository<Role>,
   ) {}
 
-  async read(page: number = 0): Promise<Role[]> {
+  async read(page = 0): Promise<Role[]> {
     return this.repository.find({
       order: {
-        id: "DESC",
-        name: "ASC"
+        id: 'DESC',
+        name: 'ASC',
       },
       take: 10,
-      skip: page * 10
+      skip: page * 10,
     });
   }
 
   async show(_id: number): Promise<Role[]> {
     return this.repository.find({
-      select: ["name", "description"],
-      where: [{ "id": _id }]
+      select: ['name', 'description'],
+      where: [{ id: _id }],
     });
   }
 
   async create() {
-    const  resource = new Role();
-    return this.repository.save(resource)
+    const resource = new Role();
+    return this.repository.save(resource);
   }
 
   async update(resource: Role) {
-    return this.repository.save(resource)
+    return this.repository.save(resource);
   }
 
   async delete(resource: Role) {

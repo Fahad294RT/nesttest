@@ -13,31 +13,31 @@ export class CompanyService {
   //   return this.repository.find();
   // }
 
-  async read(page: number = 0): Promise<Company[]> {
+  async read(page = 0): Promise<Company[]> {
     return this.repository.find({
       order: {
-        id: "DESC",
-        name: "ASC"
+        id: 'DESC',
+        name: 'ASC',
       },
       take: 10,
-      skip: page * 10
+      skip: page * 10,
     });
   }
 
   async show(_id: number): Promise<Company[]> {
     return this.repository.find({
-      select: ["name", "description"],
-      where: [{ "id": _id }]
+      select: ['name', 'description'],
+      where: [{ id: _id }],
     });
   }
 
   async create() {
-    const  company = new Company();
-    return this.repository.save(company)
+    const company = new Company();
+    return this.repository.save(company);
   }
 
   async update(company: Company) {
-    return this.repository.save(company)
+    return this.repository.save(company);
   }
 
   async delete(company: Company) {

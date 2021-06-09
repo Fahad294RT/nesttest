@@ -8,6 +8,6 @@ import { permissionProviders } from './permission.providers';
 @Module({
   imports: [DatabaseModule],
   providers: [...permissionProviders, PermissionService],
-  controllers: [PermissionController]
+  controllers: [PermissionController],
 })
 export class PermissionModule {}
